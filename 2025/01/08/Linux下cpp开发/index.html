@@ -28,7 +28,7 @@
 <meta property="og:description" content="&quot;C++ is not just a programming language, it&#39;s a philosophy of design.&quot;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-01-08T08:15:43.000Z">
-<meta property="article:modified_time" content="2025-01-08T09:51:55.589Z">
+<meta property="article:modified_time" content="2025-01-08T12:16:21.357Z">
 <meta property="article:author" content="MSM">
 <meta property="article:tag" content="cpp">
 <meta name="twitter:card" content="summary">
@@ -185,7 +185,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2025-01-08 16:15:43 / 修改时间：17:51:55" itemprop="dateCreated datePublished" datetime="2025-01-08T16:15:43+08:00">2025-01-08</time>
+              <time title="创建时间：2025-01-08 16:15:43 / 修改时间：20:16:21" itemprop="dateCreated datePublished" datetime="2025-01-08T16:15:43+08:00">2025-01-08</time>
             </span>
 
           
@@ -206,13 +206,16 @@
 
 <span id="more"></span>
 
-<h1 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h1><p>linux环境在虚拟机上搭建，使用的是VMware Workstation 17 Pro，Ubuntu版本为20.04.6桌面版。</p>
+<h1 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h1><p>linux环境在虚拟机上搭建，我使用的是VMware Workstation 17 Pro，Ubuntu版本为20.04.6桌面版。</p>
 <ul>
 <li>安装g++<br><code>sudo apt-get install g++</code></li>
 <li>安装vim<br><code>sudo apt-get install vim</code></li>
-<li>安装中文输入法（这里采用google拼音）<br><code>sudo apt install fcitx-googlepinyin</code></li>
+<li>安装中文输入法(这里采用google拼音)<br><code>sudo apt install fcitx-googlepinyin</code><p style="margin-bottom: 0px;"><b>注意安装完后还得去设置里的"Region&Language"将刚安装的语言包添加进去，并且Linux中切换中英文输入法的快捷键为：win+space。</b></p></li>
+<li>安装vscode(考虑到vim编辑代码不方便)<br>在官网选择Ubuntu系统对应的版本后下载安装包，接着使用命令行安装：<br><code>sudo dpkg -i code_1.96.2-1734607745_amd64.deb</code><br>接着在vscode界面里安装C/C++扩展，并选用g++作为编译器。</li>
 </ul>
-<p><strong>注意安装完后还得去设置里的”Region&amp;Language”将刚安装的语言包添加进去，并且Linux中切换中英文输入法的快捷键为：win+space。</strong></p>
+<h1 id="一些概念"><a href="#一些概念" class="headerlink" title="一些概念"></a>一些概念</h1><ol>
+<li>编译(compile)<br>将便于人编写、阅读、维护的高级计算机语言所写作的源代码程序，翻译为计算机能解读、运行的低阶机器语言的程序也即可执行文件，这个过程就是编译，执行这个工作的就是编译器(compiler)。我们把需要编译这个过程的称为编译型语言，典型的就是C/C++、Rust等，另外一种不需要的称为解释型语言，典型的就是Python，由于Python每次运行时都要被解释器逐行解析和执行，所以相较于提前编译好的C/C++程序运行会慢一些。</li>
+</ol>
 
     </div>
 
@@ -293,7 +296,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87"><span class="nav-number">1.</span> <span class="nav-text">环境准备</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87"><span class="nav-number">1.</span> <span class="nav-text">环境准备</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E6%A6%82%E5%BF%B5"><span class="nav-number">2.</span> <span class="nav-text">一些概念</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -354,7 +357,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共175字</span>
+  <span class="post-count">博客全站共419字</span>
 </div>
 
         
