@@ -17,7 +17,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"./public/search.xml"};
   </script>
 
   <meta name="description" content="&quot;C++ is not just a programming language, it&#39;s a philosophy of design.&quot;">
@@ -30,7 +30,7 @@
 <meta property="og:image" content="http://example.com/imgs/Linux下cpp开发/vscode.png">
 <meta property="og:image" content="http://example.com/imgs/Linux下cpp开发/vim.png">
 <meta property="article:published_time" content="2025-01-08T08:15:43.000Z">
-<meta property="article:modified_time" content="2025-01-09T05:24:29.263Z">
+<meta property="article:modified_time" content="2025-01-09T09:35:20.706Z">
 <meta property="article:author" content="MSM">
 <meta property="article:tag" content="cpp">
 <meta name="twitter:card" content="summary">
@@ -103,10 +103,12 @@
       <h1 class="site-title">MSM's blog</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
+      <p class="site-subtitle" itemprop="description">Welcome to visit</p>
   </div>
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -121,35 +123,63 @@
     <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">2</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">0</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">2</span></a>
 
   </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </div>
     </header>
 
     
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
 
 
     <main class="main">
@@ -194,7 +224,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-01-09 13:24:29" itemprop="dateModified" datetime="2025-01-09T13:24:29+08:00">2025-01-09</time>
+                <time title="修改时间：2025-01-09 17:35:20" itemprop="dateModified" datetime="2025-01-09T17:35:20+08:00">2025-01-09</time>
               </span>
 
           
@@ -221,24 +251,22 @@
 <li>安装中文输入法(这里采用google拼音)<br><code>sudo apt install fcitx-googlepinyin</code><p style="margin-bottom: 0px;"><b>注意安装完后还得去设置里的"Region&Language"将刚安装的语言包添加进去，并且Linux中切换中英文输入法的快捷键为：win+space。</b></p></li>
 <li>安装vscode(考虑到vim编辑代码不方便)<br>在官网选择Ubuntu系统对应的版本后下载安装包，接着使用命令行安装：<br><code>sudo dpkg -i code_1.96.2-1734607745_amd64.deb</code><br>接着在vscode界面里安装C/C++扩展，并选用g++作为编译器。</li>
 </ul>
-<h1 id="一些概念"><a href="#一些概念" class="headerlink" title="一些概念"></a>一些概念</h1><ol>
-<li><p>编译(compile)<br>将便于人编写、阅读、维护的高级计算机语言所写作的源代码程序，翻译为计算机能解读、运行的低阶机器语言的程序也即可执行文件，这个过程就是编译，执行这个工作的就是编译器(compiler)。我们把需要编译这个过程的称为编译型语言，典型的就是C/C++、Rust等，另外一种不需要的称为解释型语言，典型的就是Python，由于Python每次运行时都要被解释器逐行解析和执行，所以相较于提前编译好的C/C++程序运行会慢一些。例如以下命令行就是编译一个名为HelloWorld的cpp文件：<br><code>g++ HelloWorld.cpp</code><br>不过这样编译出来的可执行文件会被命名为默认值a.out，要想自定义使用<code>-o</code>参数：<br><code>g++ -o HelloWorld HelloWorld.cpp</code><br>也可以这样使用，取决于个人的使用习惯，我倾向于后一种，因为将代码文件与编译后的可执行文件名隔开了看着顺眼一些：<br><code>g++ HelloWorld.cpp -o HelloWorld</code></p>
-</li>
-<li><p>make和makefile<br>makefile是一个文本文件，包含了一组规则，定义了如何从源代码文件(通常是.c、.cpp、.h 文件等)构建最终的可执行文件或库。而make是一个构建工具，它会根据makefile中定义的规则来决定哪些部分的代码需要重新编译，以及如何执行这些编译和链接任务。通过使用make和makefile，可以有效地管理大型项目，避免重复编译和手动操作，极大提高开发效率。makefile的基本结构为：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">target: dependencies</span><br><span class="line">    command</span><br></pre></td></tr></table></figure>
+<h1 id="一些概念"><a href="#一些概念" class="headerlink" title="一些概念"></a>一些概念</h1><h2 id="编译-compile"><a href="#编译-compile" class="headerlink" title="编译(compile)"></a>编译(compile)</h2><p>将便于人编写、阅读、维护的高级计算机语言所写作的源代码程序，翻译为计算机能解读、运行的低阶机器语言的程序也即可执行文件，这个过程就是编译，执行这个工作的就是编译器(compiler)。我们把需要编译这个过程的称为编译型语言，典型的就是C/C++、Rust等，另外一种不需要的称为解释型语言，典型的就是Python，由于Python每次运行时都要被解释器逐行解析和执行，所以相较于提前编译好的C/C++程序运行会慢一些。例如以下命令行就是编译一个名为HelloWorld的cpp文件：<br><code>g++ HelloWorld.cpp</code><br>不过这样编译出来的可执行文件会被命名为默认值a.out，要想自定义使用<code>-o</code>参数：<br><code>g++ -o HelloWorld HelloWorld.cpp</code><br>也可以这样使用，取决于个人的使用习惯，我倾向于后一种，因为将代码文件与编译后的可执行文件名隔开了看着顺眼一些：<br><code>g++ HelloWorld.cpp -o HelloWorld</code></p>
+<h2 id="make和makefile"><a href="#make和makefile" class="headerlink" title="make和makefile"></a>make和makefile</h2><p>makefile是一个文本文件，包含了一组规则，定义了如何从源代码文件(通常是.c、.cpp、.h 文件等)构建最终的可执行文件或库。而make是一个构建工具，它会根据makefile中定义的规则来决定哪些部分的代码需要重新编译，以及如何执行这些编译和链接任务。通过使用make和makefile，可以有效地管理大型项目，避免重复编译和手动操作，极大提高开发效率。makefile的基本结构为：</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">target: dependencies</span></span><br><span class="line">    command</span><br></pre></td></tr></table></figure>
 <p>其中target是目标文件或规则的名称，dependencies是目标依赖的文件(如源代码文件、头文件)，command是在目标更新时执行的命令。例如：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#编译目标，默认目标</span><br><span class="line">HelloWorld: HelloWorld.cpp</span><br><span class="line">    g++ HelloWorld.cpp -o HelloWorld</span><br><span class="line"></span><br><span class="line">#清理目标</span><br><span class="line">clean:</span><br><span class="line">    rm -f HelloWorld</span><br></pre></td></tr></table></figure>
-<p>使用<code>make</code>命令时会默认选择第一个目标，如果要构建其它目标，需要显示指明就像：<code>make clean</code>，这样就会执行清理命令。</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#编译目标，默认目标</span></span><br><span class="line"><span class="section">HelloWorld: HelloWorld.cpp</span></span><br><span class="line">    g++ HelloWorld.cpp -o HelloWorld</span><br><span class="line"></span><br><span class="line"><span class="comment">#清理目标</span></span><br><span class="line"><span class="section">clean:</span></span><br><span class="line">    rm -f HelloWorld</span><br></pre></td></tr></table></figure>
+<p>使用<code>make</code>命令时会默认选择第一个目标，如果要构建其它目标，需要显示指明就像：<code>make clean</code>，这样就会执行清理命令。<br>make会自动识别名为“makefile”的文件并执行，如果makefile文件是其它名称，需要使用<code>-f</code>参数指定：<br><code>make -f mf</code> &nbsp; (这里makefile的文件名为“mf”)</p>
 <p style="margin-bottom: 0px;"><b>注意书写makefile时command要使用Tab键缩进而不能使用空格，在不同的编辑器里Tab键对应的空格数量是不同的。例如：</b></p>
 vscode
 <img src="/imgs/Linux下cpp开发/vscode.png" style="width: 100%; height: auto;"></img>
 vim
 <img src="/imgs/Linux下cpp开发/vim.png" style="width: 100%; height: auto;"></img>
-</li>
-<li><p>cmake和CMakeLists<br>cmake是一个跨平台的自动化构建系统，它能够生成用于编译、构建、测试和安装软件的标准化构建文件(如makefile)。CMakeLists是cmake使用的构建配置文件，通过它来定义项目的构建规则、依赖关系和其他设置。相较于直接用make，cmake可以生成适用于不同平台和工具链的makefile文件，更为灵活，并且自动化程度更高，简化了构建过程，减少了手动干预的需求。这使得cmake成为目前广泛使用的编译工具。</p>
-</li>
-</ol>
 
+<h2 id="cmake和CMakeLists"><a href="#cmake和CMakeLists" class="headerlink" title="cmake和CMakeLists"></a>cmake和CMakeLists</h2><p>cmake是一个跨平台的自动化构建系统，它能够生成用于编译、构建、测试和安装软件的标准化构建文件(如makefile)。CMakeLists是cmake使用的构建配置文件，通过它来定义项目的构建规则、依赖关系和其他设置。相较于直接用make，cmake可以生成适用于不同平台和工具链的makefile文件，更为灵活，并且自动化程度更高，简化了构建过程，减少了手动干预的需求，这使得cmake成为目前广泛使用的编译工具。CMakeLists包含了一系列cmake指令，例如：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#声明要求的cmake最低版本</span><br><span class="line"><span class="built_in">cmake_minimum_required</span>(VERSION <span class="number">2.8</span>)</span><br><span class="line">#声明项目名称</span><br><span class="line"><span class="built_in">project</span>(HelloWorld)</span><br><span class="line">#添加可执行程序</span><br><span class="line">#语法：<span class="built_in">add_executable</span>(程序名 源代码文件)</span><br><span class="line"><span class="built_in">add_executable</span>(HelloWorld HelloWorld.cpp)</span><br></pre></td></tr></table></figure>
+<p>一个常见的使用cmake做法为：在项目工程根目录新建build文件夹再进行编译，这样产生的中间文件就会生成在build文件夹中，与源代码分开。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> build</span><br><span class="line"><span class="built_in">cd</span> build</span><br><span class="line">cmake ..</span><br><span class="line">make</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -318,7 +346,7 @@ vim
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87"><span class="nav-number">1.</span> <span class="nav-text">环境准备</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E6%A6%82%E5%BF%B5"><span class="nav-number">2.</span> <span class="nav-text">一些概念</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87"><span class="nav-number">1.</span> <span class="nav-text">环境准备</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E6%A6%82%E5%BF%B5"><span class="nav-number">2.</span> <span class="nav-text">一些概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E8%AF%91-compile"><span class="nav-number">2.1.</span> <span class="nav-text">编译(compile)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#make%E5%92%8Cmakefile"><span class="nav-number">2.2.</span> <span class="nav-text">make和makefile</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cmake%E5%92%8CCMakeLists"><span class="nav-number">2.3.</span> <span class="nav-text">cmake和CMakeLists</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -341,7 +369,7 @@ vim
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -350,6 +378,24 @@ vim
 
 
       </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+      
+        <script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+        <script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+        <div class="widget-wrap">
+            <h3 class="widget-title">Tag Cloud</h3>
+            <div id="myCanvasContainer" class="widget tagcloud">
+                <canvas width="250" height="250" id="resCanvas" style="width=100%">
+                    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/cpp/" rel="tag">cpp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a><span class="tag-list-count">1</span></li></ul>
+                </canvas>
+            </div>
+        </div>
+      
+
 
     </div>
   </aside>
@@ -379,7 +425,7 @@ vim
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共991字</span>
+  <span class="post-count">博客全站共1.2k字</span>
 </div>
 
         
@@ -416,6 +462,10 @@ vim
   
 
 
+
+
+  
+<script src="/js/local-search.js"></script>
 
 
 
