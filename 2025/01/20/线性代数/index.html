@@ -27,11 +27,13 @@
 <meta property="og:site_name" content="MSM&#39;s blog">
 <meta property="og:description" content="&quot;People will learn linear algebra three times in their life: in college, postgraduate school, and working period.&quot;">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/imgs/线性代数/线性变换.gif">
 <meta property="article:published_time" content="2025-01-20T08:23:33.000Z">
-<meta property="article:modified_time" content="2025-01-20T11:26:29.551Z">
+<meta property="article:modified_time" content="2025-01-21T09:27:42.331Z">
 <meta property="article:author" content="MSM">
 <meta property="article:tag" content="线性代数">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/imgs/线性代数/线性变换.gif">
 
 <link rel="canonical" href="http://example.com/2025/01/20/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/">
 
@@ -213,10 +215,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2025-01-20 16:23:33 / 修改时间：19:26:29" itemprop="dateCreated datePublished" datetime="2025-01-20T16:23:33+08:00">2025-01-20</time>
+              <time title="创建时间：2025-01-20 16:23:33" itemprop="dateCreated datePublished" datetime="2025-01-20T16:23:33+08:00">2025-01-20</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-01-21 17:27:42" itemprop="dateModified" datetime="2025-01-21T17:27:42+08:00">2025-01-21</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -233,14 +241,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>646</span>
+              <span>2.8k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>3 分钟</span>
             </span>
 
         </div>
@@ -258,7 +266,110 @@
 
 <span id="more"></span>
 <p>这里强烈推荐3Blue1Brown的系列视频：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ys411472E/?spm_id_from=333.999.0.0">线性代数的本质</a>。</p>
-<h1 id="基向量"><a href="#基向量" class="headerlink" title="基向量"></a>基向量</h1><p>事实上，我们在初中以来的平面直角坐标系中所使用的坐标都隐含了一个条件，即我们所选择的基向量分别是沿x轴正方向和y轴正方向的单位向量，这是非常自然的，然而基向量的选择是非常多样的，空间中一个点的坐标也不是固定不变的，而是依赖于我们基向量的选择。<strong>基向量是这样一组特殊的向量，能够让向量空间中的任意向量，都可以唯一地表示成它们的线性组合。</strong>这就要求我们选择的向量组中的向量要足够“特别”，它不能被向量组中的其他向量表示，否则就不满足唯一表示这个条件。举个例子：<br>在$R^3$中，我们选择了$\vec{x},\vec{y},\vec{z}$这样一组向量作为基底，然而$\vec{z} = \vec{x} + \vec{y}$，那么对于向量$\vec{a} = 2\vec{x} + \vec{y}$来说，它还可以表示为$\vec{a} = \vec{x} + \vec{z}$，这就违反了基的唯一性表示原则，所以一组向量要想成为基向量，它们就彼此不能互相表示，也即<strong>线性无关</strong>。<br>基于此，我们可以定义向量空间的维度：基包含的向量个数，这里隐含了一个定理，<strong>即同一个空间中的所有基包含的向量个数一定是相同的</strong>，我们来简单证明一下：<br>假设现在有两组包含不同数量向量的基$V_1 =  $</p>
+<h1 id="基向量"><a href="#基向量" class="headerlink" title="基向量"></a>基向量</h1><p>事实上，我们在初中以来的平面直角坐标系中所使用的坐标都隐含了一个条件，即我们所选择的基向量分别是沿x轴正方向和y轴正方向的单位向量，这是非常自然的，然而基向量的选择是非常多样的，空间中一个点的坐标也不是固定不变的，而是依赖于我们基向量的选择。<strong>基向量是这样一组特殊的向量，能够让向量空间中的任意向量，都可以唯一地表示成它们的线性组合。</strong>这就要求我们选择的向量组中的向量要足够“特别”，它不能被向量组中的其他向量表示，否则就不满足唯一表示这个条件。举个例子：<br>在$\ R^3\ $中，我们选择了$\ \vec{x},\vec{y},\vec{z}\ $这样一组向量作为基底，然而$\ \vec{z} = \vec{x} + \vec{y}$，那么对于向量$\ \vec{a} = 2\vec{x} + \vec{y}\ $来说，它还可以表示为$\ \vec{a} = \vec{x} + \vec{z}$，这就违反了基的唯一性表示原则，所以一组向量要想成为基向量，它们就彼此不能互相表示，也即<strong>线性无关</strong>。<br>基于此，我们可以定义向量空间的<strong>维度</strong>：基包含的向量个数，这里隐含了一个定理，<strong>即同一个空间中的所有基包含的向量个数一定是相同的</strong>，我们来简单证明一下：<br>假设现在有两组包含不同数量向量的基$V_1 = \{ \vec{x}, \vec{y}, \vec{z} \} $，$V_2 = \{ \vec{p}, \vec{q} \}$，由于$\ V_2\ $是基，我们可以得出$\ \vec{x}, \vec{y}, \vec{z}\ $均可以被$\ \vec{p}, \vec{q}\ $表示：</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\left\{
+\begin{array}{cc}
+  \vec{x} = m_1\vec{p} + n_1\vec{q}, \\
+  \vec{y} = m_2\vec{p} + n_2\vec{q}, \\
+  \vec{z} = m_3\vec{p} + n_3\vec{q}.
+\end{array}
+\right.
+\end{equation}</script><p>由于$\ m_1, m_2, m_3, n_1, n_2, n_3\ $均为已知数，所以下列二元一次方程($\ k, j\ $为未知数)至少有一组解：</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\left\{
+\begin{aligned}
+  km_1 &+ jm_2 = m_3, \\
+  kn_1 &+ jn_2 = n_3.
+\end{aligned}
+\right.
+\end{equation}</script><p>于是$\ \vec{z} = k\vec{x} + j\vec{y}$，这与我们基向量的线性无关性矛盾，所以凡是包含向量数量比向量空间维度大的向量组必不可能是基。</p>
+<h1 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a>矩阵</h1><p>首先看以下二维空间中的变换：</p>
+<p><img src="/imgs/线性代数/线性变换.gif" style="width: 100%; height: auto;"></img></p>
+<p>它就是线性变换 $\ L \ $，具有以下两个性质：</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+L(\vec{x} + \vec{y}) = L(\vec{x}) + L(\vec{y})
+\end{equation}</script><script type="math/tex; mode=display">
+\begin{equation}
+L(k \cdot \vec{x}) = k \cdot L(\vec{x})
+\end{equation}</script><p>通俗来说就是原来等距的点变换后依然等距，相对关系不变，并且原点不能移动，这样的变换就叫作线性变换。那么如何用数学表达式描述一个线性变换呢？<br>没错，就是矩阵！<br>对于矩阵我们并不陌生，它是排列成长方形阵列的元素集合，这里的元素可以是数字或符号甚至是函数，不过最常见的形式还是实数。尽管我们可能对矩阵乘法等各种运算已经熟稔于心，但是对于它表示的含义我们也许并不是特别清楚，它在我们眼里不过是一堆数字，但是实际上它是有着简单的几何意义的，考虑如下矩阵：</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+A = 
+\left[
+\begin{array}{cc}
+  1 & -3 \\
+  5 & 2
+\end{array}
+\right]
+\end{equation}</script><p>将它的第一列$\ {[1 \quad 5]^T} \ $视作对基向量$\ {[1 \quad 0]^T} \ $线性变换后得到的新向量，第二列$\ {[-3 \quad 2]^T} \ $则是对基向量$\ {[0 \quad 1]^T} \ $线性变换后得到的新向量，由此就可以得出该矩阵定义了该向量空间的变换规则，只要用它左乘任何一个向量就可以得到线性变换后的新向量，首先用$\ A \ $乘以基向量：</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\left[
+\begin{array}{cc}
+  1 & -3 \\
+  5 & 2
+\end{array}
+\right]
+\left[
+\begin{array}{c}
+  1 \\
+  0
+\end{array}
+\right] = 
+\left[
+\begin{array}{c}
+  1 \\
+  5
+\end{array}
+\right]
+\end{equation}</script><script type="math/tex; mode=display">
+\begin{equation}
+\left[
+\begin{array}{cc}
+  1 & -3 \\
+  5 & 2
+\end{array}
+\right]
+\left[
+\begin{array}{c}
+  0 \\
+  1
+\end{array}
+\right] = 
+\left[
+\begin{array}{c}
+  -3 \\
+  2
+\end{array}
+\right]
+\end{equation}</script><p>这与我们$\ A \ $矩阵两列分别表示基向量变换后得到的新向量符合得很好，也从一个侧面很好的解释了为什么矩阵乘法要定义成</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\begin{bmatrix}
+  a & b \\
+  c & d
+\end{bmatrix}
+\begin{bmatrix}
+  e & f \\
+  g & h
+\end{bmatrix}
+=
+\begin{bmatrix}
+  ae + bg & af + bh \\
+  ce + dg & cf + dh
+\end{bmatrix}
+\end{equation}</script><p>只有这样矩阵乘法才能表示线性变换，然而我们现在只解释了基向量的线性变换，为什么说这样一个矩阵就可以定义空间中所有向量的线性变换呢？注意到上一节中我们提到的基向量定义，空间中的所有向量都可以由基唯一表示，那么对于任何一个向量：</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\vec{x} = m\vec{i} + n\vec{j} \quad (\vec{i}与\vec{j}为基向量)
+\end{equation}</script><script type="math/tex; mode=display">
+\begin{equation}
+A\vec{x} = mA\vec{i} + nA\vec{j}
+\end{equation}</script><p>我们可以看到变换后的新向量$ \ A\vec{x} \ $在新基$\ A\vec{i} \ 和 \ A\vec{j} \ $下的坐标还是$\ (m, \ n)$，这说明经过矩阵$\ A \ $相乘后，向量之间的相对关系并未改变，所以它是一个线性变换。</p>
 
     </div>
 
@@ -339,7 +450,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E5%90%91%E9%87%8F"><span class="nav-number">1.</span> <span class="nav-text">基向量</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E5%90%91%E9%87%8F"><span class="nav-number">1.</span> <span class="nav-text">基向量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9F%A9%E9%98%B5"><span class="nav-number">2.</span> <span class="nav-text">矩阵</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -424,7 +535,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共2.2k字</span>
+  <span class="post-count">博客全站共3.2k字</span>
 </div>
 
         
