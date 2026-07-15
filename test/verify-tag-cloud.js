@@ -11,6 +11,10 @@ const styles = fs.readFileSync(
   path.join(root, 'source/_data/styles.styl'),
   'utf8'
 );
+const head = fs.readFileSync(
+  path.join(root, 'themes/next/layout/_partials/head/head.swig'),
+  'utf8'
+);
 const themeConfig = fs.readFileSync(
   path.join(root, 'themes/next/_config.yml'),
   'utf8'
@@ -58,6 +62,10 @@ assert(
 assert(
   /(?:^|\n)darkmode:\s*true(?:\r?\n|$)/.test(themeConfig),
   'NexT darkmode must be enabled so dark color variables are generated'
+);
+assert(
+  head.includes('/main.css?v={{ date(null, \'YYYYMMDDHHmmss\') }}'),
+  'main CSS link must include a build timestamp to avoid stale GitHub Pages/browser cache'
 );
 
 console.log('Tag cloud checks passed.');
