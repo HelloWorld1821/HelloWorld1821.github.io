@@ -1,0 +1,184 @@
+---
+title: Linux下cpp开发
+date: 2025-01-08 16:15:43
+tags: cpp
+categories: [cpp开发, Linux]
+---
+
+<div style="text-align: center; margin-bottom: 35px;">
+  <b><i>"C++ is not just a programming language, it's a philosophy of design."</i></b>
+</div>
+
+<!-- more -->
+
+# 环境准备
+linux环境在虚拟机上搭建，我使用的是VMware Workstation 17 Pro，Ubuntu版本为20.04.6桌面版。
+1.&nbsp;&nbsp;安装g++
+```
+sudo apt-get install g++
+```
+
+2.&nbsp;&nbsp;安装vim
+```
+sudo apt-get install vim
+```
+
+3.&nbsp;&nbsp;安装中文输入法(这里采用google拼音)
+```
+sudo apt install fcitx-googlepinyin
+```
+<p style="margin-bottom: 0px;"><b>注意安装完后还得去设置里的"Region&Language"将刚安装的语言包添加进去，并且Linux中切换中英文输入法的快捷键为：win+space。</b></p>
+
+
+4.&nbsp;&nbsp;安装vscode(考虑到vim编辑代码不方便)，在官网选择Ubuntu系统对应的版本后下载安装包，接着使用命令行安装：
+<p style="margin-bottom: 20px;"></p>
+
+```
+sudo dpkg -i code_1.96.2-1734607745_amd64.deb
+```
+接着在vscode界面里安装C/C++扩展，并选用g++作为编译器。
+
+# 一些概念
+
+## 编译(compile)
+将便于人编写、阅读、维护的高级计算机语言所写作的源代码程序，翻译为计算机能解读、运行的低阶机器语言的程序也即可执行文件，这个过程就是编译，执行这个工作的就是编译器(compiler)。我们把需要编译这个过程的称为编译型语言，典型的就是C/C++、Rust等，另外一种不需要的称为解释型语言，典型的就是Python，由于Python每次运行时都要被解释器逐行解析和执行，所以相较于提前编译好的C/C++程序运行会慢一些。例如以下命令行就是编译一个名为HelloWorld的cpp文件：
+```
+g++ HelloWorld.cpp
+```
+
+不过这样编译出来的可执行文件会被命名为默认值a.out，要想自定义使用`-o`参数：
+```
+g++ -o HelloWorld HelloWorld.cpp
+```
+
+也可以这样使用，取决于个人的使用习惯，我倾向于后一种，因为将代码文件与编译后的可执行文件名隔开了看着顺眼一些：
+```
+g++ HelloWorld.cpp -o HelloWorld
+```
+
+## make和makefile
+makefile是一个文本文件，包含了一组规则，定义了如何从源代码文件(通常是.c、.cpp、.h 文件等)构建最终的可执行文件或库。而make是一个构建工具，它会根据makefile中定义的规则来决定哪些部分的代码需要重新编译，以及如何执行这些编译和链接任务。通过使用make和makefile，可以有效地管理大型项目，避免重复编译和手动操作，极大提高开发效率。makefile的基本结构为：
+```makefile
+target: dependencies
+    command
+```
+
+其中target是目标文件或规则的名称，dependencies是目标依赖的文件(如源代码文件、头文件)，command是在目标更新时执行的命令。例如：
+```makefile
+#编译目标，默认目标
+HelloWorld: HelloWorld.cpp
+    g++ HelloWorld.cpp -o HelloWorld
+
+#清理目标
+clean:
+    rm -f HelloWorld
+```
+
+使用`make`命令时会默认选择第一个目标，如果要构建其它目标，需要显示指明就像：`make clean`，这样就会执行清理命令。
+make会自动识别名为“makefile”的文件并执行，如果makefile文件是其它名称，需要使用`-f`参数指定(这里makefile的文件名为“mf”)：
+```
+make -f mf
+```
+
+<p style="margin-bottom: 0px;"><b>注意书写makefile时command要使用Tab键缩进而不能使用空格，在不同的编辑器里Tab键对应的空格数量是不同的。例如：</b></p>
+vscode
+<p>
+<img src="/imgs/Linux下cpp开发/vscode.png" style="width: 100%; height: auto;"></img>
+vim
+<img src="/imgs/Linux下cpp开发/vim.png" style="width: 100%; height: auto;"></img>
+</p>
+
+## cmake和CMakeLists
+cmake是一个跨平台的自动化构建系统，它能够生成用于编译、构建、测试和安装软件的标准化构建文件(如makefile)。CMakeLists是cmake使用的构建配置文件，通过它来定义项目的构建规则、依赖关系和其他设置。相较于直接用make，cmake可以生成适用于不同平台和工具链的makefile文件，更为灵活，并且自动化程度更高，简化了构建过程，减少了手动干预的需求，这使得cmake成为目前广泛使用的编译工具。CMakeLists包含了一系列cmake指令，例如：
+```c++
+#声明要求的cmake最低版本
+cmake_minimum_required(VERSION 2.8)
+#声明项目名称
+project(HelloWorld)
+#添加可执行程序
+#语法：add_executable(程序名 源代码文件)
+add_executable(HelloWorld HelloWorld.cpp)
+```
+
+一个常见的使用cmake做法为：在项目工程根目录新建build文件夹再进行编译，这样产生的中间文件就会生成在build文件夹中，与源代码分开。
+```sh
+mkdir build
+cd build
+cmake ..
+make
+```
+
+## 源文件(source file)和头文件
+源文件是编译的核心部分，通常是包含程序的主体逻辑、函数实现、类方法定义等具体实现的文件，具有.c（C）或.cpp（C++）的扩展名，带有main函数的源文件会被编译成可执行程序，其他的则会编译成库文件。例如：
+```c++
+//printHello.cpp
+#include <iostream>
+using namespace std;
+
+void printHello()
+{
+    cout << "Hello World!" << endl;
+}
+```
+
+上面这个代码文件就会被编译成库文件，因为它不带main函数。
+头文件一般包含函数的声明、宏定义、常量、结构体定义、类声明等，以便编译器能够知道函数、变量和类的存在，具有.h的扩展名(C++也可以使用.hpp作为扩展名)，通常不包含函数的实际实现。例如：
+```c++
+//printHello.h
+#ifndef PRINTHELLO_H
+#define PRINTHELLO_H
+
+//函数声明
+void printHello();
+
+#endif
+```
+
+最后我们如果想在主函数中调用这个函数的话，就可以这么写：
+```c++
+//main.cpp
+#include "printHello.h"
+
+int main()
+{
+    printHello();
+    return 0;
+}
+```
+
+<p style="margin-bottom: 0px;"><b>这里注意引用个人定义头文件用""，而引用标准库头文件用<>。只有使用引号才会从当前文件夹寻找，否则就会去系统配置的库环境中去寻找。</b></p>
+
+## 项目整合
+有了以上的基本概念，我们就可以针对包含printHello.cpp、printHello.h和main.cpp的简单项目进行编译了。首先尝试一下makefile:
+```makefile
+Hello: main.cpp printHello.cpp
+    g++ main.cpp printHello.cpp -o Hello
+```
+
+运行成功！
+<img src="/imgs/Linux下cpp开发/makefile.png" style="width: 100%; height: auto;"></img>
+
+接着尝试一下cmake:
+```c++
+cmake_minimum_required(VERSION 2.8)
+project(Hello)
+#添加库
+add_library(printHello printHello.cpp)
+#添加可执行文件
+add_executable(Hello main.cpp)
+#链接库
+target_link_libraries(Hello printHello)
+```
+
+同样运行成功！
+<img src="/imgs/Linux下cpp开发/cmake.png" style="width: 100%; height: auto;"></img>
+
+至此，我们已经具备编写c++项目的基础能力了。
+
+# 更新cmake
+我们在上一节提到过CMakeLists中会有声明cmake最低版本的语句，所以我们编译某些包时需要升级cmake，这时候不能使用`sudo apt-get remove cmake`卸载低版本cmake后再重装高版本，这样做会导致之前编译和安装的很多库一起被卸载！！！具体步骤可以参考这篇博客 [Ubuntu升级Cmake的正确方式](https://www.cnblogs.com/Maker-Liu/p/16550381.html)
+
+# 遇到的一些问题及解决
+
+## g2o库安装后编译无法找到相关文件
+错误的原因是/usr/local/lib不在系统查找.so文件的路径下。需自行添加路径。具体可以参考这篇博客 [g2o安装和使用](https://blog.csdn.net/dieju8330/article/details/106434241)

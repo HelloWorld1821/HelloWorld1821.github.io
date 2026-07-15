@@ -3,12 +3,12 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
-subtitle: ''
-description: ''
+title: MSM's blog
+subtitle: Welcome to visit
+description: Life is painting a picture, not doing a sum.
 keywords:
-author: John Doe
-language: en
+author: MSM
+language: zh-CN
 timezone: ''
 
 # URL
@@ -31,6 +31,13 @@ code_dir: downloads/code
 i18n_dir: :lang
 skip_render:
 
+# Search
+search:
+  path: ./public/search.xml
+  field: post # 搜索范围，默认是 post，还可以选择 page、all，设置成 all 表示搜索所有页面
+  format: html
+  limit: 10000 # 限制搜索的条目数
+
 # Writing
 new_post_name: :title.md # File name of new posts
 default_layout: post
@@ -41,7 +48,7 @@ external_link:
   exclude: ''
 filename_case: 0
 render_drafts: false
-post_asset_folder: false
+post_asset_folder: true
 relative_link: false
 future: true
 highlight:
@@ -98,9 +105,36 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: next
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: ''
+  type: git
+  repository: https://github.com/HelloWorld1821/HelloWorld1821.github.io.git
+  branch: main
+
+# hexo-tag-cloud
+tag_cloud:
+    textFont: Trebuchet MS, Helvetica
+    textColor: '#333'
+    textHeight: 25
+    outlineColor: '#E2E1D1'
+    maxSpeed: 0.1
+
+# Let NexT MathJax handle formulas in the browser.
+markdown_it_plus:
+  plugins:
+    - plugin:
+        name: "@iktakahiro/markdown-it-katex"
+        enable: false
+
+# Hexo plugin: hexo-symbols-count-time
+# https://github.com/theme-next/hexo-symbols-count-time
+symbols_count_time:
+ #文章内是否显示
+  symbols: true
+  time: true
+ # 网页底部是否显示
+  total_symbols: false
+  total_time: false
