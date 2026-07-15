@@ -258,6 +258,7 @@
 </div>
 
 <span id="more"></span>
+
 <p>强化学习（Reinforcement Learning, RL）是一种通过<strong>与环境交互、依靠奖励信号进行学习</strong>的机器学习范式。与监督学习不同，强化学习没有“标准答案”，智能体只能在不断试错中逐步逼近最优策略。</p>
 <p>本文将系统性地介绍强化学习的核心思想、数学建模方法以及经典算法，为后续深入学习打下基础。</p>
 <hr>
@@ -272,35 +273,47 @@
 <li>行为的好坏只能通过长期回报来评估</li>
 </ul>
 <p>这种学习方式与人类和动物的学习方式高度相似，因此在机器人控制、博弈智能、多智能体系统中具有重要意义。</p>
-<h1 id="第二章-马尔可夫决策过程（MDP）"><a href="#第二章-马尔可夫决策过程（MDP）" class="headerlink" title="第二章 马尔可夫决策过程（MDP）"></a>第二章 马尔可夫决策过程（MDP）</h1><p>强化学习问题通常被建模为一个<strong>马尔可夫决策过程（Markov Decision Process, MDP）</strong>，由五元组$\mathcal{M} = (\mathcal{S}, \mathcal{A}, P, R, \gamma)$表示：<br>其中：</p>
+<h1 id="第二章-马尔可夫决策过程（MDP）"><a href="#第二章-马尔可夫决策过程（MDP）" class="headerlink" title="第二章 马尔可夫决策过程（MDP）"></a>第二章 马尔可夫决策过程（MDP）</h1><p>强化学习问题通常被建模为一个<strong>马尔可夫决策过程（Markov Decision Process, MDP）</strong>，由五元组<script type="math/tex">\mathcal{M} = (\mathcal{S}, \mathcal{A}, P, R, \gamma)</script>表示：<br>其中：</p>
 <ul>
-<li>$ \mathcal{S} $：状态空间  </li>
-<li>$ \mathcal{A} $：动作空间  </li>
-<li>$ P(s’|s,a) $：状态转移概率  </li>
-<li>$ R(s,a) $：奖励函数  </li>
-<li>$ \gamma \in (0,1) $：折扣因子  </li>
+<li><script type="math/tex"> \mathcal{S} </script>：状态空间  </li>
+<li><script type="math/tex"> \mathcal{A} </script>：动作空间  </li>
+<li><script type="math/tex"> P(s'|s,a) </script>：状态转移概率  </li>
+<li><script type="math/tex"> R(s,a) </script>：奖励函数  </li>
+<li><script type="math/tex"> \gamma \in (0,1) </script>：折扣因子  
+
+</li>
 </ul>
 <p>马尔可夫性假设认为：  </p>
 <blockquote>
 <p><strong>未来只与当前状态和动作有关，与过去无关。</strong></p>
 </blockquote>
 <h1 id="第三章-价值函数与贝尔曼方程"><a href="#第三章-价值函数与贝尔曼方程" class="headerlink" title="第三章 价值函数与贝尔曼方程"></a>第三章 价值函数与贝尔曼方程</h1><p>为了衡量策略的好坏，引入<strong>价值函数（Value Function）</strong>的概念。</p>
-<h2 id="3-1-状态价值函数"><a href="#3-1-状态价值函数" class="headerlink" title="3.1 状态价值函数"></a>3.1 状态价值函数</h2><p>在策略$ \pi $下，状态价值函数定义为：</p>
-<script type="math/tex; mode=display">
-V^\pi(s) = \mathbb{E}_\pi \left[ \sum_{t=0}^{\infty} \gamma^t r_t \mid s_0 = s \right]</script><p>它表示：  </p>
+<h2 id="3-1-状态价值函数"><a href="#3-1-状态价值函数" class="headerlink" title="3.1 状态价值函数"></a>3.1 状态价值函数</h2><p>在策略<script type="math/tex"> \pi </script>下，状态价值函数定义为：</p>
+<script type="math/tex; mode=display">V^\pi(s) = \mathbb{E}_\pi \left[ \sum_{t=0}^{\infty} \gamma^t r_t \mid s_0 = s \right]</script>
+
+
+<p>它表示：  </p>
 <blockquote>
-<p>从状态$ s $出发，按照策略$ \pi $行动所能获得的期望累计回报。</p>
+<p>从状态<script type="math/tex"> s </script>出发，按照策略<script type="math/tex"> \pi </script>行动所能获得的期望累计回报。</p>
 </blockquote>
 <h2 id="3-2-动作价值函数"><a href="#3-2-动作价值函数" class="headerlink" title="3.2 动作价值函数"></a>3.2 动作价值函数</h2><p>动作价值函数（Q 函数）定义为：</p>
-<script type="math/tex; mode=display">
-Q^\pi(s,a) = \mathbb{E}_\pi \left[ \sum_{t=0}^{\infty} \gamma^t r_t \mid s_0 = s, a_0 = a \right]</script><h2 id="3-3-贝尔曼期望方程"><a href="#3-3-贝尔曼期望方程" class="headerlink" title="3.3 贝尔曼期望方程"></a>3.3 贝尔曼期望方程</h2><p>价值函数满足递归形式的贝尔曼方程：</p>
-<script type="math/tex; mode=display">
-V^\pi(s) = \sum_{a} \pi(a|s) \left[ R(s,a) + \gamma \sum_{s'} P(s'|s,a)V^\pi(s') \right]</script><p>这一方程是强化学习算法设计的理论核心。</p>
+<script type="math/tex; mode=display">Q^\pi(s,a) = \mathbb{E}_\pi \left[ \sum_{t=0}^{\infty} \gamma^t r_t \mid s_0 = s, a_0 = a \right]</script>
+
+
+<h2 id="3-3-贝尔曼期望方程"><a href="#3-3-贝尔曼期望方程" class="headerlink" title="3.3 贝尔曼期望方程"></a>3.3 贝尔曼期望方程</h2><p>价值函数满足递归形式的贝尔曼方程：</p>
+<script type="math/tex; mode=display">V^\pi(s) = \sum_{a} \pi(a|s) \left[ R(s,a) + \gamma \sum_{s'} P(s'|s,a)V^\pi(s') \right]</script>
+
+
+<p>这一方程是强化学习算法设计的理论核心。</p>
 <h1 id="第四章-最优策略与经典算法"><a href="#第四章-最优策略与经典算法" class="headerlink" title="第四章 最优策略与经典算法"></a>第四章 最优策略与经典算法</h1><p>强化学习的目标是找到<strong>最优策略</strong>：</p>
-<script type="math/tex; mode=display">
-\pi^* = \arg\max_\pi V^\pi(s), \quad \forall s \in \mathcal{S}</script><p>对应的最优价值函数满足<strong>贝尔曼最优方程</strong>：</p>
-<script type="math/tex; mode=display">
-V^*(s) = \max_a \left[ R(s,a) + \gamma \sum_{s'} P(s'|s,a)V^*(s') \right]</script><p>基于这一理论，产生了多种经典算法：</p>
+<script type="math/tex; mode=display">\pi^* = \arg\max_\pi V^\pi(s), \quad \forall s \in \mathcal{S}</script>
+
+
+<p>对应的最优价值函数满足<strong>贝尔曼最优方程</strong>：</p>
+<script type="math/tex; mode=display">V^*(s) = \max_a \left[ R(s,a) + \gamma \sum_{s'} P(s'|s,a)V^*(s') \right]</script>
+
+
+<p>基于这一理论，产生了多种经典算法：</p>
 <ul>
 <li><strong>Value Iteration</strong></li>
 <li><strong>Policy Iteration</strong></li>
@@ -308,15 +321,18 @@ V^*(s) = \max_a \left[ R(s,a) + \gamma \sum_{s'} P(s'|s,a)V^*(s') \right]</scrip
 <li><strong>SARSA</strong></li>
 </ul>
 <p>其中，Q-learning 的核心更新公式为：</p>
-<script type="math/tex; mode=display">
-Q(s,a) \leftarrow Q(s,a) + \alpha \left[ r + \gamma \max_{a'} Q(s',a') - Q(s,a) \right]</script><h1 id="第五章-探索与利用的权衡"><a href="#第五章-探索与利用的权衡" class="headerlink" title="第五章 探索与利用的权衡"></a>第五章 探索与利用的权衡</h1><p>强化学习中一个无法回避的问题是<strong>探索（Exploration）与利用（Exploitation）的权衡</strong>：</p>
+<script type="math/tex; mode=display">Q(s,a) \leftarrow Q(s,a) + \alpha \left[ r + \gamma \max_{a'} Q(s',a') - Q(s,a) \right]</script>
+
+
+
+<h1 id="第五章-探索与利用的权衡"><a href="#第五章-探索与利用的权衡" class="headerlink" title="第五章 探索与利用的权衡"></a>第五章 探索与利用的权衡</h1><p>强化学习中一个无法回避的问题是<strong>探索（Exploration）与利用（Exploitation）的权衡</strong>：</p>
 <ul>
 <li>利用：选择当前看起来最优的动作</li>
 <li>探索：尝试未知但可能更优的动作</li>
 </ul>
 <p>常见策略包括：</p>
 <ul>
-<li>$ \varepsilon $-greedy</li>
+<li><script type="math/tex"> \varepsilon </script>-greedy</li>
 <li>Softmax</li>
 <li>Upper Confidence Bound（UCB）</li>
 </ul>
@@ -446,15 +462,30 @@ Q(s,a) \leftarrow Q(s,a) + \alpha \left[ r + \gamma \max_{a'} Q(s',a') - Q(s,a) 
         </div>
 
       
-        <script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
-        <script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
-        <div class="widget-wrap">
-            <h3 class="widget-title">Tag Cloud</h3>
-            <div id="myCanvasContainer" class="widget tagcloud">
-                <canvas width="250" height="250" id="resCanvas" style="width=100%">
-                    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/" rel="tag">AI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cpp/" rel="tag">cpp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" rel="tag">线性代数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a><span class="tag-list-count">1</span></li></ul>
-                </canvas>
-            </div>
+        <div class="widget-wrap sidebar-tag-cloud">
+          <h3 class="widget-title">Tag Cloud</h3>
+          <div class="widget tagcloud sidebar-tag-cloud-tags" aria-hidden="true">
+              <span class="sidebar-tag-cloud-word sidebar-tag-cloud-word-major sidebar-tag-cloud-link-0">随笔</span>
+              <span class="sidebar-tag-cloud-word sidebar-tag-cloud-word-major sidebar-tag-cloud-link-1">cpp</span>
+              <span class="sidebar-tag-cloud-word sidebar-tag-cloud-word-major sidebar-tag-cloud-link-2">机器学习</span>
+              <span class="sidebar-tag-cloud-word sidebar-tag-cloud-word-major sidebar-tag-cloud-link-3">AI</span>
+              <span class="sidebar-tag-cloud-word sidebar-tag-cloud-word-major sidebar-tag-cloud-link-4">线性代数</span>
+                <span class="sidebar-tag-cloud-word sidebar-tag-cloud-word-fill sidebar-tag-cloud-link-0">随笔</span>
+                <span class="sidebar-tag-cloud-word sidebar-tag-cloud-word-fill sidebar-tag-cloud-link-1">cpp</span>
+                <span class="sidebar-tag-cloud-word sidebar-tag-cloud-word-fill sidebar-tag-cloud-link-2">机器学习</span>
+                <span class="sidebar-tag-cloud-word sidebar-tag-cloud-word-fill sidebar-tag-cloud-link-3">AI</span>
+                <span class="sidebar-tag-cloud-word sidebar-tag-cloud-word-fill sidebar-tag-cloud-link-4">线性代数</span>
+                <span class="sidebar-tag-cloud-word sidebar-tag-cloud-word-fill sidebar-tag-cloud-link-0">随笔</span>
+                <span class="sidebar-tag-cloud-word sidebar-tag-cloud-word-fill sidebar-tag-cloud-link-1">cpp</span>
+                <span class="sidebar-tag-cloud-word sidebar-tag-cloud-word-fill sidebar-tag-cloud-link-2">机器学习</span>
+                <span class="sidebar-tag-cloud-word sidebar-tag-cloud-word-fill sidebar-tag-cloud-link-3">AI</span>
+                <span class="sidebar-tag-cloud-word sidebar-tag-cloud-word-fill sidebar-tag-cloud-link-4">线性代数</span>
+                <span class="sidebar-tag-cloud-word sidebar-tag-cloud-word-fill sidebar-tag-cloud-link-0">随笔</span>
+                <span class="sidebar-tag-cloud-word sidebar-tag-cloud-word-fill sidebar-tag-cloud-link-1">cpp</span>
+                <span class="sidebar-tag-cloud-word sidebar-tag-cloud-word-fill sidebar-tag-cloud-link-2">机器学习</span>
+                <span class="sidebar-tag-cloud-word sidebar-tag-cloud-word-fill sidebar-tag-cloud-link-3">AI</span>
+                <span class="sidebar-tag-cloud-word sidebar-tag-cloud-word-fill sidebar-tag-cloud-link-4">线性代数</span>
+          </div>
         </div>
       
 
